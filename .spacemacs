@@ -31,18 +31,17 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     html
+     (rust :variables rust-backend 'racer)
      (ruby :variables ruby-enable-enh-ruby-mode t)
      (python :variables python-test-runner 'pytest)
      (typescript :variables typescript-backend 'tide
                  typescript-linter 'eslint)
-     ;; have to add this: :variables rmh-elfeed-org-files (list "~/.emacs.d/private/elfeed1.org") so that elfeed can read rss feeds from sites.
-     ;; also have to create that file since we dont have it right now
      (elfeed :variables rmh-elfeed-org-files (list "~/feeds.org"))
      ;; perl5
      helm
@@ -51,7 +50,7 @@ values."
      emacs-lisp
      git
      markdown
-     (org :variables org-enable-github-support t) 
+     (org :variables org-enable-github-support t)
           ;; org-projectile-file "TODOs.org")
       (shell :variables
              shell-default-height 30
@@ -269,7 +268,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -319,6 +318,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;;perl mode that ships with emacs configurations.
+  (defalias 'perl-mode 'cperl-mode)
+  (setq cperl-invalid-face nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
